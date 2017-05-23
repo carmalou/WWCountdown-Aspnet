@@ -10,7 +10,8 @@ namespace WebCountdownApp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            string idkwhatever = "Hello World!";
+            return View(idkwhatever);
         }
     }
 }
