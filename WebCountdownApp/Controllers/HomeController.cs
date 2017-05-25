@@ -11,7 +11,7 @@ namespace WebCountdownApp.Controllers
         public ActionResult Index()
         {
             string idkwhatever = "Hello World!";
-            return View(idkwhatever);
+            return View(model: idkwhatever);
         }
     }
 }
