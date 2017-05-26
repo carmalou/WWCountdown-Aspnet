@@ -9,8 +9,7 @@ namespace WebCountdownApp.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
-            //string initialCountdown = TimeRemaining();
+        {;
             string initialCountdown = "Wonder Woman is coming.";
             return View(model: initialCountdown);
         }

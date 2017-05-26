@@ -4,16 +4,11 @@
 @model String
 <div class="jumbotron">
     <h1>@Model</h1>
+    <h2 id="countdownTimer"></h2>
 </div>
 
 <script>
-    function keepCalling() {
-        console.log("keep calling");
-    }
-
-    //window.setInterval(keepCalling, 1000);
-
-    function callASP() {
+    function checkCountdown() {
         var request = new XMLHttpRequest();
         request.open('GET', '/Countdown/TimeRemaining', true); // what url should I be using??
 
@@ -21,6 +16,7 @@
             if (request.status >= 200 && request.status < 400) {
                 // Success!
                 var resp = request.responseText;
+                setDivHTML(resp);
             } else {
                 // We reached our target server, but it returned an error
                 console.log('whoops! ', request.status);
@@ -36,6 +32,11 @@
         request.send();
     }
 
-    callASP();
-    window.setInterval(callASP, 1000);
+    function setDivHTML(content) {
+        var countdownTimerDiv = document.getElementById('countdownTimer');
+        countdownTimerDiv.innerHTML = content;
+    }
+
+    checkCountdown();
+    window.setInterval(checkCountdown, 1000);
 </script>
