@@ -14,20 +14,13 @@
     //window.setInterval(keepCalling, 1000);
 
     function callASP() {
-        console.log('callASP');
-
         var request = new XMLHttpRequest();
         request.open('GET', '/Countdown/TimeRemaining', true); // what url should I be using??
 
-        console.log('request1 ', request);
-
         request.onload = function () {
-            console.log('request onload');
-            console.log(request);
             if (request.status >= 200 && request.status < 400) {
                 // Success!
                 var resp = request.responseText;
-                console.log('resp ', resp);
             } else {
                 // We reached our target server, but it returned an error
                 console.log('whoops! ', request.status);
@@ -44,4 +37,5 @@
     }
 
     callASP();
+    window.setInterval(callASP, 1000);
 </script>
