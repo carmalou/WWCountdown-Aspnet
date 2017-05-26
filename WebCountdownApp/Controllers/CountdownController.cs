@@ -33,12 +33,16 @@ namespace WebCountdownApp.Controllers
         {
             DateTime dt = Convert.ToDateTime(day);
             DateTime now = DateTime.Now;
-            var diffInMinutes = (dt - now).TotalMinutes;
-            var diffInHours = diffInMinutes / 60;
+            var diffInMilliseconds = (dt - now).TotalMilliseconds;
+            var diffInSeconds = Math.Truncate(diffInMilliseconds / 1000);
+            var diffInMinutes = Math.Truncate(diffInSeconds / 60);
+            var diffInHours = Math.Truncate(diffInMinutes / 60);
+            var appendSeconds = diffInSeconds % 60;
             var appendMinutes = diffInMinutes % 60;
-            string hours = Math.Truncate(diffInHours).ToString() + " hours";
-            string minutes = appendMinutes > 0 ? " and " + Math.Truncate(appendMinutes).ToString() + " minutes" : "";
-            return hours + minutes;
+            string hours = diffInHours > 0 ? diffInHours.ToString() + " hours" : "0 hours";
+            string minutes = appendMinutes > 0 ? " and " + appendMinutes.ToString() + " minutes" : " and 0 minutes";
+            string seconds = appendSeconds > 0 ? " and " + appendSeconds.ToString() + " seconds" : " and 0 seconds";
+            return hours + minutes + seconds;
         }
 
     }
